@@ -5,14 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:circle"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="600">
     <Grid>
+        <ItemsControl ItemsSource="{Binding Path=PointList}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse Fill="Red" Width="25" Height="25" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
+                    <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+        <!--
         <Canvas x:Name="myCanvas">
             <Ellipse Canvas.Bottom="30" Name="Ellipse" Width="80" Height="80">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="../Resources/ImageVWpng.png" Stretch="Fill"></ImageBrush>
                 </Ellipse.Fill>
             </Ellipse>
-        </Canvas>
+        </Canvas>-->
     </Grid>
 </Window>
