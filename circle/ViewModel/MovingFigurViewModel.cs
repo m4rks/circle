@@ -32,10 +32,9 @@ namespace circle.ViewModel
 
         private void AddFigure(Figure myFigure)
         {
-            // 3 at most, please!
-            if (FigureList.Count == 9)
+            Random random = new Random();
+            if (FigureList.Count > 12 && random.Next(100)>30 )
             {
-                return;
                 FigureList.RemoveAt(0);
             }
             FigureList.Add(myFigure);
@@ -45,7 +44,7 @@ namespace circle.ViewModel
         private void InitAnimation()
         {
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Interval = TimeSpan.FromMilliseconds(80);
             //timer.Tick += timer_Tick;
             timer.Tick += new EventHandler(someEventHandler);
             timer.Start();
@@ -54,7 +53,7 @@ namespace circle.ViewModel
         private void someEventHandler(object sender, EventArgs e)
         {
             Random random = new Random();
-            _myFigure = new Figure { Id = 1, StepX = 5, StepY = 5, TypeFigure = new Ellipse(), X = random.Next(0, 500), Y = random.Next(0, 500) };
+            _myFigure = new Figure { Id = 1, StepX = random.Next(0, 30), StepY = random.Next(0, 30), TypeFigure = new Ellipse(), X = random.Next(0, 500), Y = random.Next(0, 500) };
             AddFigure(_myFigure);
             MoveFigure(FigureList);
         }
@@ -71,7 +70,7 @@ namespace circle.ViewModel
                 c.Y += c.StepY;
                 return c;
             }).ToList();
-
+            //todo: jak sie dostac do tych 20 i 600
             figureList.Where(c => c.X + 20 > 600 || c.X < 0).Select(c =>
             {
                 c.StepX = c.StepX * (-1);

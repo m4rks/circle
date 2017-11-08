@@ -15,13 +15,20 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Ellipse Fill="Red" Width="25" Height="25" />
+                    <Ellipse Width="80" Height="80" >
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="../Resources/ImageVWpng.png" Stretch="Fill"></ImageBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
                 <Style>
                     <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
                     <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
+                    <!--<Setter Property="Ellipse.Fill" Value="Aqua"></Setter>
+                    <Setter Property="ImageBrush.ImageSource" Value="../Resources/ImageVWpng.png"></Setter>-->
+
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
