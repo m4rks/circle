@@ -1,20 +1,18 @@
-﻿namespace circle.Model
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace circle.Model
 {
-    public abstract class Base
+    public abstract class Base : INotifyPropertyChanged
     {
-        private double _xPosition;
-        private double _yPosition;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public double XPosition
+        protected void OnPropertyChanged([CallerMemberName] string propName = "")
         {
-            get { return _xPosition; }
-            set { _xPosition = value; }
-        }
-
-        public double YPosition
-        {
-            get { return _yPosition; }
-            set { _yPosition = value; }
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
     }
 }

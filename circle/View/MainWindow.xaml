@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="600">
     <Grid>
-        <ItemsControl ItemsSource="{Binding Path=PointList}">
+        <ItemsControl ItemsSource="{Binding Path=FigureList}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas />

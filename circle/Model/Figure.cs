@@ -2,7 +2,7 @@
 
 namespace circle.Model
 {
-    public class Figure : Base
+    public class Figure : Point
     {
         private double _stepY;
         private double _stepX;
