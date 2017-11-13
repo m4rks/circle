@@ -63,6 +63,16 @@ namespace circle.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ImageSkoda {
+            get {
+                object obj = ResourceManager.GetObject("ImageSkoda", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ImageVWpng {
             get {
                 object obj = ResourceManager.GetObject("ImageVWpng", resourceCulture);

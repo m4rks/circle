@@ -1,50 +1,58 @@
 ﻿using circle.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace circle.ViewModel
 {
+    class ButtonStartCommand
+    {
+        private decimal amount;
+
+        public ButtonStartCommand(decimal amount)
+        {
+            this.amount = amount;
+        }
+
+        public void Execute()
+        {
+            Console.WriteLine($"Calculated {amount}");
+
+        }
+    }
     class MovingFigurViewModel
     {
+        #region FIELDS
         private Figure _myFigure;
-        public Figure MyFigure
-        {
-            get
-            {
-                return _myFigure;
-            }
-            set
-            {
-                _myFigure = value;
-            }
-        }
+        public WindowGame WindowGame { get; set; }
+        public ObservableCollection<Figure> FigureList { get; private set; }
+        #endregion
 
         public MovingFigurViewModel()
         {
+            WindowGame = new WindowGame { WindowHeight = 600, WindowWidth = 800 };
             FigureList = new ObservableCollection<Figure>();
-            _myFigure = new Figure { Id = 0, StepX = 20, StepY = 20, TypeFigure = new Ellipse(), X = 20, Y = 20 };
-            AddFigure(_myFigure);
             InitAnimation();
         }
 
         private void AddFigure(Figure myFigure)
         {
             Random random = new Random();
-            if (FigureList.Count > 12 && random.Next(100)>30 )
+            if (FigureList.Count > 12 && random.Next(0, 100) > 4)
             {
                 FigureList.RemoveAt(0);
             }
             FigureList.Add(myFigure);
         }
-        public ObservableCollection<Figure> FigureList { get; private set; }
 
         private void InitAnimation()
         {
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(80);
+            timer.Interval = TimeSpan.FromMilliseconds(45);
             //timer.Tick += timer_Tick;
             timer.Tick += new EventHandler(someEventHandler);
             timer.Start();
@@ -52,9 +60,21 @@ namespace circle.ViewModel
 
         private void someEventHandler(object sender, EventArgs e)
         {
+            List<string> listImage = new List<string> { "../Resources/ImageVWpng.png", "c:/EXTRAS/ImageSkoda.png" };
             Random random = new Random();
-            _myFigure = new Figure { Id = 1, StepX = random.Next(0, 30), StepY = random.Next(0, 30), TypeFigure = new Ellipse(), X = random.Next(0, 500), Y = random.Next(0, 500) };
+            _myFigure = new Figure
+            {
+                Id = FigureList.Count + 1,
+                StepX = random.Next(-20, 20),
+                StepY = random.Next(-20, 20),
+                TypeFigure = new Rectangle(),
+                X = random.Next(0, WindowGame.WindowWidth),
+                Y = random.Next(0, WindowGame.WindowHeight),
+                Image = listImage[random.Next(0, 2)],
+
+            };
             AddFigure(_myFigure);
+            Trace.WriteLine(random.Next(0, 100).ToString());
             MoveFigure(FigureList);
         }
 
@@ -62,21 +82,21 @@ namespace circle.ViewModel
         {
             figureList.Select(c =>
             {
-                c.X += c.StepX;
+                c.X = c.X + c.StepX;
                 return c;
             }).ToList();
             figureList.Select(c =>
             {
-                c.Y += c.StepY;
+                c.Y = c.Y + c.StepY;
                 return c;
             }).ToList();
             //todo: jak sie dostac do tych 20 i 600
-            figureList.Where(c => c.X + 20 > 600 || c.X < 0).Select(c =>
+            figureList.Where(c => c.X + 60 > WindowGame.WindowWidth || c.X < 0).Select(c =>
             {
                 c.StepX = c.StepX * (-1);
                 return c;
             }).ToList();
-            figureList.Where(c => c.Y + 20 > 600 || c.Y < 0).Select(c =>
+            figureList.Where(c => c.Y + 60 > WindowGame.WindowHeight || c.Y < 0).Select(c =>
             {
                 c.StepY = c.StepY * (-1);
                 return c;

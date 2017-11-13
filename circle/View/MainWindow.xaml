@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:circle"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        Title="MainWindow" Height="{Binding Path=WindowGame.WindowHeight, Mode=TwoWay}" Width="{Binding Path=WindowGame.WindowWidth, Mode=TwoWay}">
     <Grid>
+        <Button Height="100" Width="100" Command="{Binding ButtonStartCommand}">asdf </Button>
         <ItemsControl ItemsSource="{Binding Path=FigureList}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -15,10 +16,15 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Ellipse Width="80" Height="80" >
+                    <Ellipse  Width="60" Height="60" >
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="../Resources/ImageVWpng.png" Stretch="Fill"></ImageBrush>
+                            <ImageBrush ImageSource="{Binding Path=Image}" Stretch="Fill"></ImageBrush>
                         </Ellipse.Fill>
+                        <Ellipse.RenderTransform>
+                            <TransformGroup>
+                                <TranslateTransform X="{Binding Path=StepX, Mode=TwoWay}" Y="{Binding Path=StepY, Mode=TwoWay}"></TranslateTransform>
+                            </TransformGroup>
+                        </Ellipse.RenderTransform>
                     </Ellipse>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

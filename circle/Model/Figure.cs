@@ -13,14 +13,15 @@ namespace circle.Model
         public double StepX
         {
             get { return _stepX; }
-            set { _stepX = value; }
+            set { _stepX = value; OnPropertyChanged(); }
         }
 
         public double StepY
         {
             get { return _stepY; }
-            set { _stepY = value; }
+            set { _stepY = value; OnPropertyChanged(); }
         }
 
+        public string Image { get; internal set; }
     }
 }
