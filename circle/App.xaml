@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:circle"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+         <!-- asdf -->
     </Application.Resources>
 </Application>
