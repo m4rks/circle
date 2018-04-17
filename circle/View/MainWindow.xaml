@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:circle"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <!--asd-->
     <Grid>
         <Canvas x:Name="myCanvas">
             <Ellipse Canvas.Bottom="30" Name="Ellipse" Width="80" Height="80">
