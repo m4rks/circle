@@ -10,8 +10,11 @@ namespace circle
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double moveStepX = 6;
-        private double moveStepY = 6;
+        private double moveStepX = 6;  //todo:potem zmienic na 1
+        private double moveStepY = 6;//todo:potem zmienic na 1
+        //Function to get random number
+        private static readonly Random getrandom = new Random();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,24 +47,39 @@ namespace circle
         }
         private void someEventHandler(Object sender, EventArgs args)
         {
-            Canvas.SetLeft(Ellipse, XValue + moveStepX);
-            Canvas.SetTop(Ellipse, YValue + moveStepY);
 
-            if (YValue + Ellipse.Height > myCanvas.ActualHeight && moveStepY > 0)
+            double fi =(double) GetRandomNumber(0, 360) / (360 + 1) * 2 * Math.PI;
+            moveStepX = Math.Cos(fi);
+            moveStepY = Math.Sin(fi);
+
+            
+            if (XValue + Ellipse.Width > myCanvas.ActualWidth && moveStepX > 0)     //x
             {
-                moveStepY = -6.0;
-            }
-            if (YValue < 0 && moveStepY < 0)
-            {
-                moveStepY = +6.0;
-            }
-            if (XValue + Ellipse.Width > myCanvas.ActualWidth && moveStepX > 0)
-            {
-                moveStepX = -6.0;
+                moveStepX = (-1)* moveStepX;
             }
             if (XValue < 0  && moveStepX < 0)
             {
-                moveStepX = +6.0;
+                moveStepX = +moveStepX;
+            }
+
+            if (YValue + Ellipse.Height > myCanvas.ActualHeight && moveStepY > 0)   //y
+            {
+                moveStepY = (-1) * moveStepY;
+            }
+            if (YValue < 0 && moveStepY < 0)
+            {
+                moveStepY = +moveStepY;
+            }
+
+            Canvas.SetLeft(Ellipse, XValue + moveStepX);  //x  = x + D1
+            Canvas.SetTop(Ellipse, YValue + moveStepY);   //y  = y + D2
+
+        }
+        public static int GetRandomNumber(int min, int max)
+        {
+            lock (getrandom) // synchronize
+            {
+                return getrandom.Next(min, max);
             }
         }
     }
