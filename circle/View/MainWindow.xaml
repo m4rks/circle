@@ -5,9 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:circle"
         mc:Ignorable="d"
-        Title="MainWindow" Height="{Binding Path=WindowGame.WindowHeight, Mode=TwoWay}" Width="{Binding Path=WindowGame.WindowWidth, Mode=TwoWay}">
+        Title="MainWindow" WindowStyle="None"  AllowsTransparency="True" Height="{Binding Path=WindowGame.WindowHeight, Mode=TwoWay}" Width="{Binding Path=WindowGame.WindowWidth, Mode=TwoWay}" MouseDown="move_window">
     <Grid>
-        <Button Height="100" Width="100" Command="{Binding ButtonStartCommand}">asdf </Button>
+        <ItemsControl ItemsSource="{Binding Path=GameViewModel.ButtonList}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                    <WrapPanel/>
+
+                </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse  Width="60" Height="60" >
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Path=Image}" Stretch="Fill"></ImageBrush>
+                        </Ellipse.Fill>
+                        <Ellipse.RenderTransform>
+                            <TransformGroup>
+                                <TranslateTransform X="{Binding Path=StepX, Mode=TwoWay}" Y="{Binding Path=StepY, Mode=TwoWay}"></TranslateTransform>
+                            </TransformGroup>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
+                    <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
+                    <!--<Setter Property="Ellipse.Fill" Value="Aqua"></Setter>
+                    <Setter Property="ImageBrush.ImageSource" Value="../Resources/ImageVWpng.png"></Setter>-->
+
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+        
         <ItemsControl ItemsSource="{Binding Path=FigureList}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>

@@ -65,6 +65,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\Base.cs" />
+    <Compile Include="Model\OrderGame.cs" />
+    <Compile Include="ViewModel\GameViewModel.cs" />
     <Compile Include="ViewModel\MovingFigurViewModel.cs" />
     <Compile Include="Model\WindowGame.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
@@ -108,9 +110,24 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ImageSkoda.png">
+    <Resource Include="Resources\ImageSkoda.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ImageAmiga.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\blue_ballon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\orange_ballon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

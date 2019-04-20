@@ -52,7 +52,7 @@ namespace circle.ViewModel
         private void InitAnimation()
         {
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(45);
+            timer.Interval = TimeSpan.FromMilliseconds(65);
             //timer.Tick += timer_Tick;
             timer.Tick += new EventHandler(someEventHandler);
             timer.Start();
@@ -60,21 +60,20 @@ namespace circle.ViewModel
 
         private void someEventHandler(object sender, EventArgs e)
         {
-            List<string> listImage = new List<string> { "../Resources/ImageVWpng.png", "c:/EXTRAS/ImageSkoda.png" };
+            List<string> listImage = new List<string> { "../Resources/blue_ballon.png", "../Resources/orange_ballon.png", "../Resources/ImageVWpng.png" };
             Random random = new Random();
             _myFigure = new Figure
             {
                 Id = FigureList.Count + 1,
-                StepX = random.Next(-20, 20),
-                StepY = random.Next(-20, 20),
+                StepX = random.Next(-10, 10),
+                StepY = random.Next(-10, 10),
                 TypeFigure = new Rectangle(),
                 X = random.Next(0, WindowGame.WindowWidth),
                 Y = random.Next(0, WindowGame.WindowHeight),
-                Image = listImage[random.Next(0, 2)],
+                Image = listImage[random.Next(0, 3)],
 
             };
             AddFigure(_myFigure);
-            Trace.WriteLine(random.Next(0, 100).ToString());
             MoveFigure(FigureList);
         }
 
