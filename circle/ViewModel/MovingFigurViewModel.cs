@@ -60,7 +60,7 @@ namespace circle.ViewModel
 
         private void someEventHandler(object sender, EventArgs e)
         {
-            List<string> listImage = new List<string> { "../Resources/blue_ballon.png", "../Resources/orange_ballon.png", "../Resources/ImageVWpng.png" };
+            List<string> listImage = new List<string> { "../Resources/red_ballon.png", "../Resources/blue_ballon.png", "../Resources/orange_ballon.png", "../Resources/ImageVWpng.png" };
             Random random = new Random();
             _myFigure = new Figure
             {
@@ -70,7 +70,7 @@ namespace circle.ViewModel
                 TypeFigure = new Rectangle(),
                 X = random.Next(0, WindowGame.WindowWidth),
                 Y = random.Next(0, WindowGame.WindowHeight),
-                Image = listImage[random.Next(0, 3)],
+                Image = listImage[random.Next(0, listImage.Count)],
 
             };
             AddFigure(_myFigure);
